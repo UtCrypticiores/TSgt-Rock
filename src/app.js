@@ -1,12 +1,13 @@
 require("dotenv").config();
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
-const token = process.env.TOKEN;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const command = require("./deploy-commands");
-client.commands = new Collection();
-
+const build = require("./build-files");
+// build.run();
 command.run();
+client.commands = new Collection();
+const token = process.env.TOKEN;
 
 const commandFiles = fs
 	.readdirSync("./src/commands")
