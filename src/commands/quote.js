@@ -22,7 +22,7 @@ module.exports = {
 		let path = `./src/config/quotes/${interaction.guild.id}.txt`;
 		if (interaction.options.getSubcommand() === "add") {
 			let quote = interaction.options.getString("quote");
-			let success = `${quote} has bewn added`;
+			let success = `${quote} has been added`;
 			let fail = `${quote} has failed to be added`;
 			if (fs.existsSync(path)) {
 				if (fs.readFileSync(path, "utf-8") == "") {
@@ -33,7 +33,7 @@ module.exports = {
 							interaction.reply(success);
 						}
 					});
-				}else{
+				} else {
 					fs.appendFileSync(path, `\n${quote}`, function (err) {
 						if (err) {
 							interaction.reply(fail);
@@ -52,7 +52,7 @@ module.exports = {
 				});
 			}
 		} else if (interaction.options.getSubcommand() === "send") {
-			if (fs.existsSync(path)) {
+			if (fs.existsSync(path) && fs.readFileSync(path, "utf-8") != "") {
 				let quotes = [];
 				let text = fs.readFileSync(path, "utf-8");
 				quotes = text.split("\n");
