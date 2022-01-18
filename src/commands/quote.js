@@ -64,7 +64,7 @@ module.exports = {
 			}
 		}
 
-		async function reply(message) {
+		function reply(message) {
 			 interaction.reply(message);
 		}
 	},
