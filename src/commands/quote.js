@@ -28,26 +28,26 @@ module.exports = {
 				if (fs.readFileSync(path, "utf-8") == "") {
 					fs.appendFileSync(path, quote, function (err) {
 						if (err) {
-							interaction.reply(fail);
+							reply(fail);
 						} else {
-							interaction.reply(success);
+							reply(success);
 						}
 					});
 				} else {
 					fs.appendFileSync(path, `\n${quote}`, function (err) {
 						if (err) {
-							interaction.reply(fail);
+							reply(fail);
 						} else {
-							interaction.reply(success);
+							reply(success);
 						}
 					});
 				}
 			} else {
 				fs.writeFileSync(path, quote, function (err) {
 					if (err) {
-						interaction.reply(fail);
+						reply(fail);
 					} else {
-						interaction.reply(success);
+						reply(success);
 					}
 				});
 			}
@@ -58,10 +58,14 @@ module.exports = {
 				quotes = text.split("\n");
 				let R = Math.floor(Math.random() * (quotes.length - 1 - 1)) + 1;
 				console.log;
-				await interaction.reply(quotes[R]);
+				reply(quotes[R]);
 			} else {
-				await interaction.reply("there are no quotes available");
+				reply("there are no quotes available");
 			}
+		}
+
+		async function reply(message) {
+			 interaction.reply(message);
 		}
 	},
 };
